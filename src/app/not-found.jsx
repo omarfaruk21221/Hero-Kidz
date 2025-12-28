@@ -1,46 +1,73 @@
 "use client";
 
 import Link from "next/link";
-import { BiSolidError } from "react-icons/bi";
-import { IoHomeSharp } from "react-icons/io5";
-import { MdErrorOutline } from "react-icons/md";
+import { FaHome, FaSearch } from "react-icons/fa";
+import { MdError } from "react-icons/md";
 
 export default function Error404() {
   return (
     <div className="min-h-[90vh] flex flex-col items-center justify-center bg-gradient-to-br from-base-100 to-base-200 text-base-content transition-colors duration-300">
-      <div className="text-center p-8 glass-effect shadow-2xl rounded-3xl max-w-lg w-full mx-4">
-        {/* Error Icon */}
-        <div className="flex justify-center mb-6">
-          <BiSolidError className="text-error w-24 h-24 animate-bounce" />
-        </div>
-
-        {/* Error Code */}
-        <h1 className="text-8xl md:text-9xl font-extrabold text-error tracking-widest mb-4">
-          404
-        </h1>
-
-        {/* Error Badge */}
-        <div className="inline-block bg-error/20 px-4 py-2 text-sm font-semibold rounded-lg mb-6">
-          <MdErrorOutline className="inline mr-2 w-5 h-5" />
-          Page Not Found
+      <div className="text-center glass-effect p-12 rounded-3xl max-w-2xl w-full">
+        {/* Animated 404 */}
+        <div className="relative mb-8">
+          <h1 className="text-9xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-pulse">
+            404
+          </h1>
+          <MdError
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 text-error/20 animate-spin"
+            style={{ animationDuration: "3s" }}
+          />
         </div>
 
         {/* Error Message */}
-        <h2 className="text-2xl font-semibold md:text-3xl mb-4">
-          Oops! Something went wrong.
-        </h2>
-        <p className="text-base-content/70 mb-8">
-          Sorry, we could not find the page you are looking for.
-        </p>
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold mb-4">Page Not Found</h2>
+          <p className="text-base-content/70 text-lg mb-2">
+            Oops! The page you're looking for doesn{`'`}t exist.
+          </p>
+          <p className="text-base-content/60">
+            It might have been moved or deleted.
+          </p>
+        </div>
 
-        {/* Home Button */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 px-8 py-3 text-sm font-medium text-white transition-all bg-primary rounded-full hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-primary shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
-        >
-          <IoHomeSharp className="w-5 h-5" />
-          Go Back Home
-        </Link>
+        {/* Search Suggestion */}
+        <div className="glass-effect p-6 rounded-2xl mb-8">
+          <FaSearch className="w-8 h-8 text-primary mx-auto mb-4" />
+          <p className="text-base-content/70">
+            Try searching for what you need or go back to the homepage
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/" className="btn btn-primary btn-lg gap-2">
+            <FaHome className="w-5 h-5" />
+            Go Home
+          </Link>
+
+          <button
+            onClick={() => window.history.back()}
+            className="btn btn-outline btn-lg"
+          >
+            Go Back
+          </button>
+        </div>
+
+        {/* Quick Links */}
+        <div className="mt-12 pt-8 border-t border-base-300">
+          <p className="text-sm text-base-content/60 mb-4">Quick Links:</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link href="/services" className="link link-primary">
+              Services
+            </Link>
+            <Link href="/about" className="link link-primary">
+              About
+            </Link>
+            <Link href="/" className="link link-primary">
+              Home
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
