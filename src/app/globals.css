@@ -27,3 +27,10 @@
 }
 
 @custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+
+/* Hide the site's header/footer for auth routes when the body receives
+   the 'hide-site-shell' class (added by a client helper). */
+body.hide-site-shell header,
+body.hide-site-shell footer {
+  display: none !important;
+}
