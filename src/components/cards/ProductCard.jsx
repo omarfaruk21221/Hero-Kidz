@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaEye, FaStar } from "react-icons/fa6";
 import { FaCartPlus } from "react-icons/fa6";
@@ -58,12 +59,12 @@ export default function ProductCard({ product }) {
         </div>
       </div>
       {/* view details btn */}
-      <button
-        onClick={() => handleViewDetails(product)}
-        className="btn btn-secondary btn-sm absolute bottom-3 right-25 rounded-xl flex gap-1 items-center shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+      <Link
+        href={`/products/${product._id}`}
+        className="btn btn-primary btn-sm absolute bottom-3 right-25 rounded-xl flex gap-1 items-center shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
       >
         <FaEye className="text-base" /> View Details
-      </button>
+      </Link>
       {/* Add To Cart Button */}
       <button
         onClick={() => handleAddToCart(product)}
