@@ -28,6 +28,20 @@
 
 @custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
 
+
+/* ------ custom css styles-------- */
+.skeleton-class {
+  background: linear-gradient(90deg, #e6e6e6 25%, #ffffff 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite;
+  border-radius: 10px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* Hide the site's header/footer for auth routes when the body receives
    the 'hide-site-shell' class (added by a client helper). */
 body.hide-site-shell header,
