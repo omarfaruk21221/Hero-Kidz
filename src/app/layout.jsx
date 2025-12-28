@@ -11,7 +11,10 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: " Hero Kidz",
+  title: {
+    default: "Hero Kidz - Toy Store",
+    template: "%s | Hero Kidz",
+  },
   description: "An online toy store for kids",
 };
 
