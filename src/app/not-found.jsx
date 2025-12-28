@@ -23,7 +23,7 @@ export default function Error404() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-4">Page Not Found</h2>
           <p className="text-base-content/70 text-lg mb-2">
-            Oops! The page you're looking for doesn{`'`}t exist.
+            Oops! The page you{`'`}re looking for doesn{`'`}t exist.
           </p>
           <p className="text-base-content/60">
             It might have been moved or deleted.
