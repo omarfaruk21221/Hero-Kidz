@@ -64,7 +64,7 @@ const ProductDetails = async ({ params }) => {
               <FaTag /> {discount > 0 ? `${discount}% OFF` : "No Discount"}
             </div>
           </section>
-          {/* -------------ratindg and price -------- */}
+          {/* -------------rating and price -------- */}
           <section className="flex items-center justify-between px-10  text-sm text-base-300">
             {/* ----price---- */}
             <div className="text-right">
