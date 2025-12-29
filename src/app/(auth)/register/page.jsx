@@ -5,16 +5,23 @@ import Link from "next/link";
 import MyLogo from "@/components/layouts/MyLogo";
 import { FaEye, FaEyeSlash, FaUser } from "react-icons/fa";
 import GoogleLogInBtn from "@/components/button/GoogleLogInBtn";
+import { postUser } from "@/actions/server/auth";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+    const ResUserData ={
+        name,
+        photoUrl,
+        email,
+        password
+    }
   const avatarPreview = useMemo(() => {
     try {
       return photoUrl && photoUrl.startsWith("http") ? photoUrl : null;
@@ -23,22 +30,15 @@ export default function RegisterPage() {
     }
   }, [photoUrl]);
 
+  const router = useRouter()
+  const path =usePathname()
   const handleSubmit = async (e) => {
+
     e.preventDefault();
-    setError("");
-    if (!username || !email || !password) {
-      setError("Please fill in all required fields.");
-      return;
-    }
-    setLoading(true);
-    try {
-      // TODO: replace with real registration integration
-      console.log("Registering", { username, photoUrl, email });
-      await new Promise((res) => setTimeout(res, 900));
-    } catch (err) {
-      setError("Registration failed. Please try again.");
-    } finally {
-      setLoading(false);
+    const result = await postUser(ResUserData)
+    if(result.acknowledged){ 
+        alert("register successful !! Please LogIn ")
+        router.push("/login")
     }
   };
 
@@ -68,8 +68,8 @@ export default function RegisterPage() {
             <input
               className="block w-full mt-2 px-4 py-3 rounded-lg border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-cyan-400"
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Your display name"
               required
               minLength={2}
