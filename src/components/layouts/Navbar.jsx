@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import NavLink from "../button/NavLink";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";

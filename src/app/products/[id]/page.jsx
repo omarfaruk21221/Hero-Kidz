@@ -1,12 +1,7 @@
 import { getSingleProduct } from "@/actions/server/product";
+import AddCartBtn from "@/components/button/AddCartBtn";
 import Image from "next/image";
-import {
-  FaStar,
-  FaCartPlus,
-  FaBolt,
-  FaCheckCircle,
-  FaTag,
-} from "react-icons/fa6";
+import { FaStar, FaBolt, FaCheckCircle, FaTag } from "react-icons/fa6";
 
 const ProductDetails = async ({ params }) => {
   const { id } = (await params) || {};
@@ -89,9 +84,7 @@ const ProductDetails = async ({ params }) => {
           {/* -----button side----- */}
           <section className="flex items-center justify-end">
             <div className="flex gap-3">
-              <button className="btn btn-primary flex items-center gap-2">
-                <FaCartPlus /> Add to Cart
-              </button>
+              <AddCartBtn product={product} />
               <button className="btn btn-ghost flex items-center gap-2">
                 <FaBolt /> Buy Now
               </button>
