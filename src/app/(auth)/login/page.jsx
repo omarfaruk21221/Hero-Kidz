@@ -5,6 +5,7 @@ import Link from "next/link";
 import MyLogo from "@/components/layouts/MyLogo";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleLogInBtn from "@/components/button/GoogleLogInBtn";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -12,30 +13,18 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const UserForm = {
+    email,
+    password,
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    if (!email || !password) {
-      setError("Please fill in both fields.");
-      return;
-    }
-    setLoading(true);
-    try {
-      // TODO: replace with real auth integration
-      console.log("Logging in", { email, password });
-      await new Promise((res) => setTimeout(res, 800));
-      // On success redirect or show toast — left as an integration point
-    } catch (err) {
-      setError("Login failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGoogleLogin = () => {
-    // TODO: wire up to Google auth provider (next-auth / firebase / your backend)
-    console.log("Google sign-in (not implemented)");
+    const result = await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    });
+    // alert("Login is clicked");
   };
 
   return (
